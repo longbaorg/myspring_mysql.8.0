@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="personService" destroy-method="mydestroy" init-method="myinit" class="com.beanlife.PersonService">
+		<!-- 设置属性：通过依赖注入DI实现，setter方法给定 -->
+		<property name="name">
+			<value>Mike</value>
+		</property>
+	</bean>
+	
+	<bean id="personService2" class="com.beanlife.PersonService">
+		<!-- 设置属性：通过依赖注入DI实现，setter方法给定 -->
+		<property name="name">
+			<value>Mike</value>
+		</property>
+	</bean>
+	
+	<bean id="myBeanPostProcessor" class="com.beanlife.MyBeanPostProcessor" />
+
+</beans>

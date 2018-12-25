@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 第一个bean的id必须和Mast中的Dog类型的对象名称一样才可以用byName
+		但自动装配方式为byType时不必在乎名称是否相同
+	 -->	
+	<bean id="dog1" class="com.autowire.Dog">
+		<property name="namedog">
+			<value>dahuang</value>
+		</property>
+		<property name="agedog">
+			<value>32</value>
+		</property>
+	</bean>
+	
+	<bean id="mas" class="com.autowire.Master" autowire="constructor">
+		<property name="masname">
+			<value>Mike</value>
+		</property>
+	</bean>
+	
+</beans>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="emp1" class="com.collection.Employee">
+		<property name="id" value="1" />
+		<property name="name">
+			<value>Mike</value>
+		</property>
+	</bean>
+	
+	<bean id="emp2" class="com.collection.Employee">
+		<property name="id" value="2" />
+		<property name="name" value="Rose" />
+	</bean>
+	
+	<bean id="department" class="com.collection.Department">
+		<!-- 给简单属性注入取值 -->
+		<property name="name" value="财务部" />
+		<!-- 给数组注入取值 -->
+		<property name="empName">
+			<list>
+				<value>Mike</value>
+				<value>Rose</value>
+				<value>Jacky</value>
+			</list>
+		</property>
+		<!-- 给集合注入取值 -->
+		<property name="empNameList">
+			<list>
+				<value>listMike</value>
+				<value>listRose</value>
+				<value>listJacky</value>
+			</list>
+		</property>
+		<property name="empList">
+			<list>
+				<ref bean="emp1" />
+				<ref bean="emp2" />
+			</list>
+		</property>
+		<!-- 集合 hashset -->
+		<property name="emplisthashset">
+			<set>
+				<ref bean="emp1"/>
+				<ref bean="emp2"/>
+			</set>
+		</property>
+		<!-- 集合 hashMap -->
+		<property name="emphashMap">
+			<map>
+				<entry key="1" value-ref="emp1"/>
+				<entry key="2" value-ref="emp2"/>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- bean一个类 -->
+	<bean id="stu1" class="com.collection.Student">
+		<property name="id">
+			<value>1</value>
+		</property>
+		<property name="name">
+			<value>张三</value>
+		</property>
+	</bean>
+	
+	<bean id="stu2" class="com.collection.Student">
+		<property name="id">
+			<value>2</value>
+		</property>
+		<property name="name">
+			<value>李四</value>
+		</property>
+	</bean>
+	
+	<!-- bean一个类 -->
+	<bean id="cla" class="com.collection.Classes">
+		
+		<property name="studentlites">
+			<list>
+				<ref bean="stu1" />
+				<ref bean="stu2" />
+			</list>
+		</property>
+		<property name="claname" value="fdsfsdfsd"></property>
+		<!-- 集合 hashset -->
+		<property name="stulisthashset">
+			<set>
+				<ref bean="stu1"/>
+				<ref bean="stu2"/>
+			</set>
+		</property>
+		<!-- 集合 hashMap -->
+		<property name="stuhashMap">
+			<map>
+				<entry key="1" value-ref="stu1"/>
+				<entry key="2" value-ref="stu2"/>
+			</map>
+		</property>
+	</bean>
+</beans>

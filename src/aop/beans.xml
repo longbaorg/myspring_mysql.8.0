@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- 被代理对象 -->
+	<bean id="testservice1" class="aop.TestService1"></bean>
+	<bean id="testservice2" class="aop.TestService2"></bean>
+	
+	<!-- 配置前置通知 -->
+	<bean id="mymethodbeforeactive" class="aop.MyMethodBeforeAdvice">
+		
+	</bean>
+	<bean id="myAfterreturnAdvice" class="aop.MyAfterreturnAdvice"></bean>
+	
+	
+	<!-- 配置代理对象 -->
+	<bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!-- 代理接口集合 -->
+		<property name="proxyInterfaces">
+			<list>
+				<!-- 接口要写全称，包含路径以及接口名 -->
+				<value>aop.TestServiceInterface</value>
+				<value>aop.TestServiceInterface2</value>
+			</list>
+		</property>
+		
+		<!-- 把通知植入到代理对象，即通知集合      interceptorNames拦截器名字-->
+		<property name="interceptorNames">
+			<list>
+				<value>mymethodbeforeactive</value>
+				<value>myAfterreturnAdvice</value>
+			</list>
+		</property>
+		
+		<!-- 配置被代理的对象 -->
+		<property name="target" ref="testservice1"></property>
+		<!-- 
+			<property name="target">
+				<ref bean="testservice1">
+				<ref bean="testservice2">
+			</property>
+		 -->
+	</bean>
+</beans>

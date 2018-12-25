@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 在容器文件中配置bean（Service/dao/pojo/action/数据源），即只要是Java类就可以 -->
+	<bean id="userService" scope="prototype" class="com.service.UserService">
+		<!-- 这里就体现出注入的概念 -->
+		<property name="name">
+			<value>Mike</value>
+		</property>
+	</bean>
+	
+</beans>

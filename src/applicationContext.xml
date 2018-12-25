@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 在容器文件中配置bean（Service/dao/pojo/action/数据源），即只要是Java类就可以 -->
+	<bean id="userService" class="com.service.UserService">
+		<!-- 这里就体现出注入的概念 -->
+		<property name="name">
+			<value>Mike</value>
+		</property>
+		
+		<!-- 在userService中引用ByeServiceBean -->
+		
+	</bean>
+	<bean id="classes" class="com.collection.Classes">
+		<property name="name" value="软件1601本" />
+		<property name="studentname">
+			<list>
+				<value>make</value>
+				<value>rouse</value>
+				<value>jack</value>
+			</list>
+		</property>
+	</bean>
+	<!-- bean元素的作用是：当Spring框架加载的时候，Spring就会自动创建一个Bean对象，并放入内存进行管理 
+		即相当于： UserService userService = new UserService();
+		id属性即是对象名
+		property元素及value相当于：
+		userService.setName("Mike");
+	-->
+	<!-- 
+		如何做到的呢？——反射机制就可以实现这种操作。
+		也就是set方法必须书写
+	 -->
+	 
+	 <!-- id必须是唯一的 -->
+	 <bean id="byeService" class="com.service.ByeService">
+	 	<property name="name" value="小明" />
+	 </bean>
+</beans>
